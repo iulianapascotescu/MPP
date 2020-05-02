@@ -1,0 +1,19 @@
+13,The Lone Ranger,family,2013
+15,Dawn of the Planet of the Apes,SCI-FI,2011
+3,Avengers Endgame,action,2019
+10,Harry Potter,adventure,2009
+16,King Kong,action,2005
+17,Quantum of Solace,comedy,2008
+8,Batman v Superman Dawn of Justice,action,2016
+11,The Lion King,drama,2019
+2,Avengers Ultron,SCI-FI,2015
+12,Avatar,action,2009
+18,Cars 2,action,2011
+9,Tangled,drama,2010
+6,Solo: A Star Wars Story,SCI-FI,2018
+1,Pirates,action,2011
+14,The Hobbit The Desolation of Smaug,adventure,2013
+5,Justice League,SCI-FI,2017
+4,Pirates of the Caribbean At World's End,action,2007
+7,John Carter,drama,2012
+19,iuli,dragos,2000

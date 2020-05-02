@@ -1,0 +1,7 @@
+2020-04-27T12:40:21,899 TRACE [main]: ServiceMovie                         - getAllMovies - method entered 
+2020-04-27T12:40:30,979 TRACE [main]: ServiceRent                          - getAllRents - method entered 
+2020-04-27T12:41:00,306 TRACE [main]: ServiceMovie                         - addMovie - method entered: movie=Movie{id='null', title='1917', genre='war', year=2019} 
+2020-04-27T12:41:00,413 TRACE [main]: ServiceMovie                         - addMovie - method finished 
+2020-04-28T18:08:19,589 TRACE [main]: ServiceMovie                         - getSortedMovies - method entered 
+2020-04-28T18:08:19,598 TRACE [main]: ServiceMovie                         - getAllMovies - method entered 
+2020-04-28T18:37:23,906 TRACE [main]: ServiceMovie                         - getAllMovies - method entered 
