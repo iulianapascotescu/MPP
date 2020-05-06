@@ -1,2 +1,5 @@
-rootProject.name = 'MovieProject'
+rootProject.name = 'catalog-rest-template'
+include 'catalog-core'
+include 'catalog-web'
+include 'catalog-client'
 
