@@ -1,4 +1,11 @@
-apply plugin: 'war'
+plugins {
+    id 'war'
+}
+
+war {
+    zip64 true
+}
+
 
 dependencies {
     compile project(':catalog-core')
@@ -8,9 +15,8 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "$jacksonDatabindVersion"
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "$jacksonDatabindVersion"
 
-//    compile group: 'javax.servlet', name: 'javax.servlet-api', version: "$javaxServeletApiVersion"
-    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version:"$javaxServeletApiVersion"
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: "$javaxServeletApiVersion"
 
 
 }
+

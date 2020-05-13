@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ro.ubb.catalog.core.model.Client;
 import ro.ubb.catalog.core.model.Movie;
 import ro.ubb.catalog.core.model.Rent;
@@ -50,6 +51,7 @@ public class MovieService implements MovieServiceInterface{
     }
 
     @Override
+    @Transactional
     public Movie updateMovie(Movie movie) {
         log.trace("updateMovie - method entered: movie={}", movie);
         Movie update = movieRepository.findById(movie.getId()).orElse(movie);

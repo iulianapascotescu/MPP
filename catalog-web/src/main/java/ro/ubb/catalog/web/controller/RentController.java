@@ -16,6 +16,7 @@ import ro.ubb.catalog.web.dto.RentsDto;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,9 +33,9 @@ public class RentController {
     private MovieConverter movieConverter;
 
     @RequestMapping(value = "/rents", method = RequestMethod.GET)
-    public RentsDto getRents(){
+    public List<RentDto> getRents(){
         log.trace("RentsDto getRents - method entered");
-        RentsDto rentsDto = new RentsDto(rentConverter
+        List<RentDto> rentsDto = new ArrayList<>(rentConverter
                 .convertModelsToDtos(rentService.getAllRents()));
         log.trace("RentsDto getRents - method finished");
         return rentsDto;

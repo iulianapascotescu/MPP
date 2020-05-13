@@ -12,6 +12,9 @@ import ro.ubb.catalog.web.converter.MovieConverter;
 import ro.ubb.catalog.web.dto.MovieDto;
 import ro.ubb.catalog.web.dto.MoviesDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class MovieController {
     public static final Logger log = LoggerFactory.getLogger(MovieController.class);
@@ -23,9 +26,9 @@ public class MovieController {
     private MovieConverter movieConverter;
 
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
-    public MoviesDto getMovies(){
+    public List<MovieDto> getMovies(){
         log.trace("MoviesDto getMovies - method entered");
-        MoviesDto moviesDto = new MoviesDto(movieConverter
+        List<MovieDto> moviesDto = new ArrayList(movieConverter
                 .convertModelsToDtos(movieService.getAllMovies()));
         log.trace("MoviesDto getMovies - method finished");
         return moviesDto;

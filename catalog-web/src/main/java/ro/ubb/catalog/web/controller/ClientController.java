@@ -12,6 +12,9 @@ import ro.ubb.catalog.web.dto.ClientDto;
 import ro.ubb.catalog.web.dto.ClientsDto;
 import ro.ubb.catalog.web.dto.MovieDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class ClientController {
     public static final Logger log= LoggerFactory.getLogger(ClientController.class);
@@ -23,9 +26,9 @@ public class ClientController {
     private ClientConverter clientConverter;
 
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
-    public ClientsDto getClients(){
+    public List<ClientDto> getClients(){
         log.trace("ClientsDto getClients - method entered");
-        ClientsDto clientsDto = new ClientsDto(clientConverter
+        List<ClientDto> clientsDto = new ArrayList<>(clientConverter
                 .convertModelsToDtos(clientService.getAllClients()));
         log.trace("ClientsDto getClients - method finished");
         return clientsDto;

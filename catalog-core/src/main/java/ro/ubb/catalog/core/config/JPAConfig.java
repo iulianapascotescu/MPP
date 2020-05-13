@@ -2,6 +2,7 @@ package ro.ubb.catalog.core.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.postgresql.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
@@ -20,11 +21,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+/**
+ * Created by radu.
+ */
 
 @Configuration
 @EnableJpaRepositories({"ro.ubb.catalog.core.repository"})
 @EnableTransactionManagement
-//@EnableCaching
+@EnableCaching
 public class JPAConfig {
 
     @Value("${db.jdbcUrl}")
@@ -50,13 +54,25 @@ public class JPAConfig {
         config.setJdbcUrl(jdbcUrl);
         config.setUsername(username);
         config.setPassword(password);
-        config.setDriverClassName(Driver.class.getName());
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        config.setDriverClassName("org.postgresql.Driver");
         HikariDataSource dataSource = new HikariDataSource(config);
         return dataSource;
     }
+
+//    @Bean
+//    DataSource dataSource() {
+//        BasicDataSource dataSource=new BasicDataSource();
+//        dataSource.setDriverClassName(Driver.class.getName());
+//        dataSource.setUrl(jdbcUrl);
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//        dataSource.setInitialSize(2);
+//
+//        return dataSource;
+//    }
 
     @Bean
     public EntityManagerFactory entityManagerFactory() {

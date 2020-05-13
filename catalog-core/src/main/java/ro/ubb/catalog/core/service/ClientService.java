@@ -45,6 +45,7 @@ public class ClientService implements ClientServiceInterface{
     }
 
     @Override
+    @Transactional
     public Client updateClient(Client client) {
         log.trace("updateClient - method entered: client={}", client);
         Client update = this.clientRepository.findById(client.getId()).orElse(client);
