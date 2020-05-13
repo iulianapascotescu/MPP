@@ -1,0 +1,6 @@
+<div *ngIf="client">
+  <h2>Are you sure you want to delete the client {{client.name}} ?</h2>
+
+  <button (click)="no()">No</button>
+  <button (click)="yes()">Yes</button>
+</div>

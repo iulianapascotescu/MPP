@@ -1,0 +1,20 @@
+<label>Title:
+  <input #title/>
+  <br/>
+</label>
+
+<label>Genre:
+  <input #genre/>
+  <br/>
+</label>
+
+<label>Year:
+  <input #year/>
+  <br/>
+</label>
+
+<button (click)="saveMovie(title.value, genre.value, year.value)">
+  Save
+</button>
+
+

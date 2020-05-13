@@ -1,0 +1,15 @@
+<label>Name:
+  <input #name/>
+  <br/>
+</label>
+
+<label>Age:
+  <input #age/>
+  <br/>
+</label>
+
+<button (click)="saveClient(name.value, age.value)">
+  Save
+</button>
+
+

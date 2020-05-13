@@ -1,0 +1,6 @@
+<div *ngIf="movie">
+  <h2>Are you sure you want to delete the movie {{movie.title}} ?</h2>
+
+  <button (click)="no()">No</button>
+  <button (click)="yes()">Yes</button>
+</div>
