@@ -8,6 +8,10 @@ import {MovieNewComponent} from "./movies/movie-new/movie-new.component";
 import {ClientNewComponent} from "./clients/client-new/client-new.component";
 import {MovieDeleteComponent} from "./movies/movie-delete/movie-delete.component";
 import {ClientDeleteComponent} from "./clients/client-delete/client-delete.component";
+import {RentsComponent} from "./rents/rents.component";
+import {RentNewComponent} from "./rents/rent-new/rent-new.component";
+import {MovieSortComponent} from "./movies/movie-sort/movie-sort.component";
+import {MovieFilterComponent} from "./movies/movie-filter/movie-filter.component";
 
 
 const routes: Routes = [
@@ -19,7 +23,11 @@ const routes: Routes = [
   {path: 'client/detail/:id', component: ClientDetailComponent},
   {path: 'client/new', component: ClientNewComponent},
   {path: 'movie/delete/:id', component: MovieDeleteComponent},
-  {path: 'client/delete/:id', component: ClientDeleteComponent}
+  {path: 'client/delete/:id', component: ClientDeleteComponent},
+  {path: 'rents', component: RentsComponent},
+  {path: 'rent/new', component: RentNewComponent},
+  {path: 'movie/sort', component: MovieSortComponent},
+  {path: 'movie/filter', component: MovieFilterComponent},
 ];
 
 @NgModule({

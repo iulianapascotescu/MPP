@@ -1,0 +1,10 @@
+<h2>New movies</h2>
+
+<ol class="movies">
+  <li *ngFor="let movie of movies ">
+    {{movie.title}}
+  </li>
+</ol>
+
+<button (click)="prevFilter()">prev</button>
+<button (click)="nextFilter()">next</button>

@@ -18,4 +18,14 @@ export class MoviesComponent {
     console.log("add new movie btn clicked ");
     this.router.navigate(["movie/new"]);
   }
+
+  sortMovies(){
+    console.log("sort movies button clicked");
+    this.router.navigate(["movie/sort"]);
+  }
+
+  filterMovies(){
+    console.log("filter movies clicked");
+    this.router.navigate(["movie/filter"]);
+  }
 }

@@ -1,0 +1,36 @@
+<div [formGroup]="errorGroup">
+
+  <label>Title:
+    <input #title formControlName="titleError"/>
+    <br/>
+  </label>
+  <div *ngIf="errorGroup.controls['titleError'].errors && (errorGroup.controls['titleError'].dirty || errorGroup.controls['titleError'].touched)">
+  <p *ngIf="errorGroup.controls['titleError'].errors.required">Title is required</p>
+  </div>
+  <br>
+
+  <label>Genre:
+    <input #genre formControlName="genreError"/>
+    <br/>
+  </label>
+  <div *ngIf="errorGroup.controls['genreError'].errors && (errorGroup.controls['genreError'].dirty || errorGroup.controls['genreError'].touched)">
+    <p *ngIf="errorGroup.controls['genreError'].errors.required">Genre is required</p>
+    <p *ngIf="errorGroup.controls['genreError'].errors.minLength">Length should be > 2</p>
+  </div>
+  <br>
+
+  <label>Year:
+    <input #year formControlName="yearError"/>
+    <br/>
+  </label>
+  <div *ngIf="errorGroup.controls['yearError'].errors && (errorGroup.controls['yearError'].dirty || errorGroup.controls['yearError'].touched)">
+    <p *ngIf="errorGroup.controls['yearError'].errors.min">Year should be > 1800</p>
+    <p *ngIf="errorGroup.controls['yearError'].errors.max">Year should be < 2020</p>
+  </div>
+  <br>
+
+  <button (click)="saveMovie(title.value, genre.value, year.value)">
+    Save
+  </button>
+
+</div>

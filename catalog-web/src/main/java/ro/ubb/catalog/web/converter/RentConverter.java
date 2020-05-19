@@ -1,10 +1,9 @@
 package ro.ubb.catalog.web.converter;
 
 import org.springframework.stereotype.Component;
-import ro.ubb.catalog.core.model.Client;
 import ro.ubb.catalog.core.model.Rent;
-import ro.ubb.catalog.web.dto.MovieDto;
 import ro.ubb.catalog.web.dto.RentDto;
+
 
 @Component
 public class RentConverter extends BaseConverter<Rent, RentDto> {
@@ -14,8 +13,8 @@ public class RentConverter extends BaseConverter<Rent, RentDto> {
     @Override
     public Rent convertDtoToModel(RentDto dto) {
         Rent rent = Rent.builder()
-                .movieId(dto.getMovieId())
-                .clientId(dto.getClientId())
+                .movie(dto.getMovie())
+                .client(dto.getClient())
                 .build();
         rent.setId(dto.getId());
         return rent;
@@ -24,8 +23,8 @@ public class RentConverter extends BaseConverter<Rent, RentDto> {
     @Override
     public RentDto convertModelToDto(Rent rent) {
         RentDto dto = RentDto.builder()
-                .movieId(rent.getMovieId())
-                .clientId(rent.getClientId())
+                .movie(rent.getMovie())
+                .client(rent.getClient())
                 .build();
         dto.setId(rent.getId());
         return dto;

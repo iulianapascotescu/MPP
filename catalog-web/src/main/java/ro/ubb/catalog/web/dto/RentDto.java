@@ -1,14 +1,23 @@
 package ro.ubb.catalog.web.dto;
 
 import lombok.*;
+import ro.ubb.catalog.core.model.Client;
+import ro.ubb.catalog.core.model.Movie;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Builder
 public class RentDto extends BaseDto{
-    private int movieId;
-    private int clientId;
+    @NotNull
+    @Valid
+    private Movie movie;
+
+    @Valid
+    @NotNull
+    private Client client;
 }

@@ -6,26 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.ubb.catalog.core.model.Client;
-import ro.ubb.catalog.core.model.Rent;
+import ro.ubb.catalog.core.model.Movie;
 import ro.ubb.catalog.core.repository.ClientRepository;
-import ro.ubb.catalog.core.repository.MovieRepository;
-import ro.ubb.catalog.core.repository.RentRepository;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class ClientService implements ClientServiceInterface{
-    public static final Logger log= LoggerFactory.getLogger(MovieService.class);
-
-    @Autowired
-    private MovieRepository movieRepository;
+public class ClientService implements ClientServiceInterface {
+    public static final Logger log = LoggerFactory.getLogger(MovieService.class);
 
     @Autowired
     private ClientRepository clientRepository;
-
-    @Autowired
-    private RentRepository rentRepository;
 
 
     @Override
@@ -37,7 +31,7 @@ public class ClientService implements ClientServiceInterface{
     }
 
     @Override
-    public Client saveClient(Client client) {
+    public Client saveClient(@NotNull @Valid Client client) {
         log.trace("saveClient - method entered: client={}", client);
         Client savedClient = this.clientRepository.save(client);
         log.trace("saveClient - method finished");
@@ -46,7 +40,7 @@ public class ClientService implements ClientServiceInterface{
 
     @Override
     @Transactional
-    public Client updateClient(Client client) {
+    public Client updateClient(@NotNull @Valid Client client) {
         log.trace("updateClient - method entered: client={}", client);
         Client update = this.clientRepository.findById(client.getId()).orElse(client);
         this.clientRepository.save(client);
@@ -55,11 +49,16 @@ public class ClientService implements ClientServiceInterface{
     }
 
     @Override
-    public void deleteClient(Integer id) {
+    public void deleteClient(@Min(0) Integer id) {
         log.trace("deleteClient - method entered: id={}", id);
-        List<Rent> rents = rentRepository.findAll().stream().filter(p -> p.getClientId()==id).collect(Collectors.toList());
-        rents.stream().forEach(p -> rentRepository.deleteById(p.getId()));
+        //List<Rent> rents = rentRepository.findAll().stream().filter(p -> p.getClientId()==id).collect(Collectors.toList());
+        //rents.stream().forEach(p -> rentRepository.deleteById(p.getId()));
         clientRepository.deleteById(id);
         log.trace("deleteClient - method finished");
+    }
+
+    @Override
+    public Client findById(@Min(0) int id) {
+        return this.clientRepository.findById(id).get();
     }
 }

@@ -12,4 +12,6 @@ public interface ClientServiceInterface {
     Client updateClient(Client client);
 
     void deleteClient(Integer id);
+
+    Client findById(int id);
 }

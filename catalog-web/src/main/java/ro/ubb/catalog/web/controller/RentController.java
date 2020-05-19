@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ro.ubb.catalog.core.model.Client;
+import ro.ubb.catalog.core.model.Movie;
+import ro.ubb.catalog.core.model.Rent;
+import ro.ubb.catalog.core.service.ClientServiceInterface;
+import ro.ubb.catalog.core.service.MovieServiceInterface;
 import ro.ubb.catalog.core.service.RentServiceInterface;
+import ro.ubb.catalog.web.converter.ClientConverter;
 import ro.ubb.catalog.web.converter.MovieConverter;
 import ro.ubb.catalog.web.converter.RentConverter;
 import ro.ubb.catalog.web.dto.MovieDto;
+import ro.ubb.catalog.web.dto.NewRentDto;
 import ro.ubb.catalog.web.dto.RentDto;
-import ro.ubb.catalog.web.dto.RentsDto;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class RentController {
@@ -27,25 +32,39 @@ public class RentController {
     private RentServiceInterface rentService;
 
     @Autowired
+    private MovieServiceInterface movieService;
+
+    @Autowired
+    private ClientServiceInterface clientService;
+
+    @Autowired
     private RentConverter rentConverter;
 
     @Autowired
     private MovieConverter movieConverter;
 
+    @Autowired
+    private ClientConverter clientConverter;
+
     @RequestMapping(value = "/rents", method = RequestMethod.GET)
     public List<RentDto> getRents(){
-        log.trace("RentsDto getRents - method entered");
-        List<RentDto> rentsDto = new ArrayList<>(rentConverter
-                .convertModelsToDtos(rentService.getAllRents()));
-        log.trace("RentsDto getRents - method finished");
+        log.trace("RentController getRents - method entered");
+        List<Rent> rents = rentService.getAllRents();
+        log.trace("RentController line 40");
+        List<RentDto> rentsDto = new ArrayList<>();//rentConverter.convertModelsToDtos(this.rentService.getAllRents()));
+        for(Rent rent : rents)
+            rentsDto.add(rentConverter.convertModelToDto(rent));
+        log.trace("RentController getRents - method finished: rents{}", rentsDto);
         return rentsDto;
     }
 
     @RequestMapping(value = "/rents", method = RequestMethod.POST)
-    public RentDto saveRent(@RequestBody RentDto rentDto) {
-        log.trace("RentsDto saveRent: rentDto={} - method entered", rentDto);
-        RentDto rentDtoSaved = rentConverter.convertModelToDto(rentService.saveRent(
-                rentConverter.convertDtoToModel(rentDto)));
+    public RentDto saveRent(@RequestBody @NotNull NewRentDto newRentDto) {
+        log.trace("RentsDto saveRent: newRentDto={} - method entered", newRentDto);
+        Movie movie = this.movieService.findById(newRentDto.getMovieId());
+        Client client = this.clientService.findById(newRentDto.getClientId());
+        Rent rent = new Rent(movie, client);
+        RentDto rentDtoSaved = rentConverter.convertModelToDto(rentService.saveRent(rent));
         log.trace("RentsDto saveRent - method finished");
         return rentDtoSaved;
     }
@@ -53,16 +72,9 @@ public class RentController {
     @RequestMapping(value = "/rents/mostRented", method = RequestMethod.GET)
     public String findMostRentedMovie() {
         log.trace("String findMostRentedMovie - method entered");
-        String result = rentService.findMostRentedMovie();
+        //String result = rentService.findMostRentedMovie();
         log.trace("String findMostRentedMovie - method finished");
-        return result;
+        return "result";
     }
 
-    @RequestMapping(value = "/rents/filter", method = RequestMethod.GET)
-    public ArrayList<String> filterMoviesIfRented(){
-        log.trace("HashSet<String> filterMoviesIfRented - method entered");
-        ArrayList<String> result = new ArrayList<>(rentService.filterMoviesIfRented());
-        log.trace("HashSet<String> filterMoviesIfRented - method finished");
-        return result;
-    }
 }

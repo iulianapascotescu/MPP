@@ -13,5 +13,17 @@ public interface MovieServiceInterface {
 
     void deleteMovie(Integer id);
 
-    List<Movie> getSortedMovies();
+    Movie findById(int id);
+
+    List<Movie> sort();
+
+    List<Movie> nextSort();
+
+    List<Movie> previousSort();
+
+    List<Movie> filterMovies();
+
+    List<Movie> nextFilterMovies();
+
+    List<Movie> prevFilterMovies();
 }

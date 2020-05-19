@@ -2,9 +2,7 @@ package ro.ubb.catalog.web.converter;
 
 import org.springframework.stereotype.Component;
 import ro.ubb.catalog.core.model.Client;
-import ro.ubb.catalog.core.model.Movie;
 import ro.ubb.catalog.web.dto.ClientDto;
-import ro.ubb.catalog.web.dto.RentDto;
 
 @Component
 public class ClientConverter extends BaseConverter<Client, ClientDto> {

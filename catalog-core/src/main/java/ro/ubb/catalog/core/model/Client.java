@@ -1,17 +1,33 @@
 package ro.ubb.catalog.core.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
+@Table(name = "client")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Builder
 public class Client extends BaseEntity<Integer> {
+    @NotNull
+    @Size(min = 2, max = 50)
     private String name;
+
+    @Min(10)
+    @Max(100)
     private int age;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Rent> rents;
 }

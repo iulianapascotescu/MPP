@@ -2,6 +2,9 @@ package ro.ubb.catalog.web.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -9,6 +12,9 @@ import lombok.*;
 @ToString(callSuper = true)
 @Builder
 public class ClientDto extends BaseDto{
+    @NotEmpty
     private String name;
+
+    @Max(100)
     private int age;
 }

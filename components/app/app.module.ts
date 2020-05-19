@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -17,6 +17,12 @@ import {MovieNewComponent} from "./movies/movie-new/movie-new.component";
 import { ClientNewComponent } from './clients/client-new/client-new.component';
 import { MovieDeleteComponent } from './movies/movie-delete/movie-delete.component';
 import { ClientDeleteComponent } from './clients/client-delete/client-delete.component';
+import { RentsComponent } from './rents/rents.component';
+import {RentService} from "./rents/shared/rent.service";
+import { RentListComponent } from './rents/rent-list/rent-list.component';
+import { RentNewComponent } from './rents/rent-new/rent-new.component';
+import { MovieSortComponent } from './movies/movie-sort/movie-sort.component';
+import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
 
 
 @NgModule({
@@ -32,6 +38,11 @@ import { ClientDeleteComponent } from './clients/client-delete/client-delete.com
     ClientNewComponent,
     MovieDeleteComponent,
     ClientDeleteComponent,
+    RentsComponent,
+    RentListComponent,
+    RentNewComponent,
+    MovieSortComponent,
+    MovieFilterComponent,
   ],
 
   imports: [
@@ -39,8 +50,9 @@ import { ClientDeleteComponent } from './clients/client-delete/client-delete.com
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
-  providers: [MovieService, ClientService],
+  providers: [MovieService, ClientService, RentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
