@@ -1,12 +1,32 @@
+plugins {
+    id 'war'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
 
+war {
+    zip64 true
+}
+
+group = 'ro.ubb'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
-    //jpa
     compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
     compile group: 'org.springframework', name: 'spring-orm', version: "$springVersion"
     compile(group: 'org.springframework.data', name: 'spring-data-jpa', version: "$springDataVersion")
-
-    compile group: 'org.hibernate', name: 'hibernate-core', version: "$hibernateVersion"
 
     compile group: 'org.postgresql', name: 'postgresql', version: "$postgresqlVersion"
 //    compile group: 'postgresql', name: 'postgresql', version: "$jdbcpostgreSqlVersion"
@@ -28,4 +48,26 @@ dependencies {
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
     compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.1.5.Final'
 
+
+    compile group: 'org.springframework', name: 'spring-webmvc', version: "$springVersion"
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "$jacksonDatabindVersion"
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "$jacksonDatabindVersion"
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: "$javaxServeletApiVersion"
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
 }

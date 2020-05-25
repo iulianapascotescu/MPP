@@ -15,7 +15,7 @@
         <module name="catalog-core_main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11">
+    <bytecodeTargetLevel target="1.8">
       <module name="catalog-1-ngjpa_main" target="1.8" />
       <module name="catalog-1-ngjpa_test" target="1.8" />
       <module name="ro.ubb.catalog-1-list.catalog-1-list.main" target="11" />
