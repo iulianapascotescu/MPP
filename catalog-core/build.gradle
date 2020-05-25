@@ -24,6 +24,12 @@ repositories {
 }
 
 dependencies {
+<<<<<<< Updated upstream
+=======
+    //annotationProcessor('org.hibernate:hibernate-jpamodelgen: 5.4.9.Final')
+
+    //jpa
+>>>>>>> Stashed changes
     compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
     compile group: 'org.springframework', name: 'spring-orm', version: "$springVersion"
     compile(group: 'org.springframework.data', name: 'spring-data-jpa', version: "$springDataVersion")
@@ -48,6 +54,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
     compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.1.5.Final'
 
+<<<<<<< Updated upstream
 
     compile group: 'org.springframework', name: 'spring-webmvc', version: "$springVersion"
 
@@ -71,3 +78,13 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+=======
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-jpamodelgen
+    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.4.16.Final'
+
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+
+}
+>>>>>>> Stashed changes

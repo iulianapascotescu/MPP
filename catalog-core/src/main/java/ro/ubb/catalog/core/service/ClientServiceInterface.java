@@ -13,5 +13,5 @@ public interface ClientServiceInterface {
 
     void deleteClient(Integer id);
 
-    Client findById(int id);
+    Client findByName(String name);
 }

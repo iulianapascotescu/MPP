@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.ubb.catalog.core.model.Client;
-import ro.ubb.catalog.core.model.Movie;
 import ro.ubb.catalog.core.repository.ClientRepository;
 
 import javax.validation.Valid;
@@ -25,7 +24,7 @@ public class ClientService implements ClientServiceInterface {
     @Override
     public List<Client> getAllClients() {
         log.trace("getAllClients: method entered");
-        List<Client> clients = clientRepository.findAll();
+        List<Client> clients = clientRepository.findAllWithRentsAndMoviesSQL();
         log.trace("getAllClients: result={}", clients);
         return clients;
     }
@@ -58,7 +57,12 @@ public class ClientService implements ClientServiceInterface {
     }
 
     @Override
-    public Client findById(@Min(0) int id) {
-        return this.clientRepository.findById(id).get();
+    public Client findByName(String name) {
+        //return this.clientRepository.findByName(name);
+        List<Client> clients = this.clientRepository.findAll();
+        for(Client c :clients)
+            if(c.getName().equals(name))
+                return c;
+        return null;
     }
 }

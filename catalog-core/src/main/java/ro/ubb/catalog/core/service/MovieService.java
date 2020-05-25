@@ -36,7 +36,7 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public List<Movie> getAllMovies() {
         log.trace("MovieService getAllMovies: method entered");
-        List<Movie> movies = movieRepository.findAll();
+        List<Movie> movies = movieRepository.findAllWithRentsAndClients();//.findAll();
         log.trace("MovieService getAllMovies: result={}", movies);
         return movies;
     }
@@ -79,8 +79,14 @@ public class MovieService implements MovieServiceInterface {
     }
 
     @Override
-    public Movie findById(@Min(0) int id) {
-        return this.movieRepository.findById(id).get();
+    public Movie findByTitle(String title) {
+        log.trace("findByTitle {}", title);
+        //return this.movieRepository.findByTitle(title);
+        List<Movie> movies = this.movieRepository.findAll();
+        for(Movie m : movies)
+            if(m.getTitle().equals(title))
+                return m;
+        return null;
     }
 
     @Override

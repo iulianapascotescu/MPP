@@ -5,8 +5,21 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "movieWithRents",
+                attributeNodes = @NamedAttributeNode(value = "rent")),
+
+        @NamedEntityGraph(name = "movieWithRentsAndClients",
+                attributeNodes = @NamedAttributeNode(value = "rent",
+                        subgraph = "rentWithClients"),
+                subgraphs = @NamedSubgraph(name = "rentWithClients",
+                        attributeNodes = @NamedAttributeNode(value =
+                                "client")))
+})
 @Entity
 @Table(name = "movie")
 @NoArgsConstructor
@@ -27,7 +40,7 @@ public class Movie extends BaseEntity<Integer> {
     @Max(2020)
     private int year;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Rent.class, mappedBy = "movie", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "movie")
     @JsonManagedReference
-    private List<Rent> rents;
+    private List<Rent> rents = new ArrayList<>();
 }

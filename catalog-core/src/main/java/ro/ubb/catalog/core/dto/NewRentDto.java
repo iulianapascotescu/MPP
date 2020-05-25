@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 @ToString(callSuper = true)
 @Builder
-public class NewRentDto {
-    private int movieId;
-    private int clientId;
+public class NewRentDto extends BaseDto{
+    private String movieTitle;
+    private String clientName;
 }

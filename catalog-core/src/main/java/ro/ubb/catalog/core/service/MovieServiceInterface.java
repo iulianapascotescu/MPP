@@ -13,7 +13,7 @@ public interface MovieServiceInterface {
 
     void deleteMovie(Integer id);
 
-    Movie findById(int id);
+    Movie findByTitle(String title);
 
     List<Movie> sort();
 
@@ -26,4 +26,5 @@ public interface MovieServiceInterface {
     List<Movie> nextFilterMovies();
 
     List<Movie> prevFilterMovies();
+
 }

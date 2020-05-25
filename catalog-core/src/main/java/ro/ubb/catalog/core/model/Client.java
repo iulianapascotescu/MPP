@@ -8,7 +8,21 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
+
+
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "clientWithRents",
+                attributeNodes = @NamedAttributeNode(value = "rent")),
+
+        @NamedEntityGraph(name = "clientWithRentsAndMovies",
+                attributeNodes = @NamedAttributeNode(value = "rent",
+                        subgraph = "rentWithMovies"),
+                subgraphs = @NamedSubgraph(name = "rentWithMovies",
+                        attributeNodes = @NamedAttributeNode(value =
+                                "movie")))
+})
 
 @Entity
 @Table(name = "client")
@@ -27,7 +41,7 @@ public class Client extends BaseEntity<Integer> {
     @Max(100)
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "client")
     @JsonManagedReference
-    private List<Rent> rents;
+    private List<Rent> rents = new ArrayList<>();
 }
