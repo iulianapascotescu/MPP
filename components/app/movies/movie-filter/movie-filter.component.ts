@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../shared/movie.service";
 import {Router} from "@angular/router";
 import {Movie} from "../shared/movie.model";
@@ -14,7 +14,8 @@ export class MovieFilterComponent implements OnInit {
   movies: Array<Movie>;
 
   constructor(private movieService: MovieService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.filter();
@@ -24,13 +25,13 @@ export class MovieFilterComponent implements OnInit {
     console.log("movie-filter.component.ts");
     this.movieService.filterMovies()
       .subscribe(
-        movies => this.movies = movies.filter(movie => movie.year>=2019).sort((movie1, movie2) => movie1.title.localeCompare(movie2.title)),
+        movies => this.movies = movies.filter(movie => movie.year >= 2019).sort((movie1, movie2) => movie1.title.localeCompare(movie2.title)),
         error => this.errorMessage = <any>error
       );
     console.log("{}", this.movies);
   }
 
-  nextFilter(){
+  nextFilter() {
     console.log("movie-filter.component.ts");
     this.movieService.nextFilterMovies()
       .subscribe(
@@ -40,7 +41,7 @@ export class MovieFilterComponent implements OnInit {
     console.log("{}", this.movies);
   }
 
-  prevFilter(){
+  prevFilter() {
     console.log("movie-filter.component.ts");
     this.movieService.prevFilterMovies()
       .subscribe(

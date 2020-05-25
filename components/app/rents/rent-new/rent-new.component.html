@@ -1,14 +1,14 @@
-<label>Movie id:
-  <input #movieId/>
+<label>Movie title:
+  <input #movieTitle/>
   <br/>
 </label>
 
-<label>Client id:
-  <input #clientId/>
+<label>Client name:
+  <input #clientName/>
   <br/>
 </label>
 
-<button (click)="saveRent(movieId.value, clientId.value)">
+<button (click)="saveRent(movieTitle.value, clientName.value)">
   Save
 </button>
 

@@ -12,9 +12,10 @@ import {switchMap} from "rxjs/operators";
 })
 export class ClientDeleteComponent implements OnInit {
 
-  @Input() client : Client
+  @Input() client: Client
 
-  constructor(private clientService: ClientService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private clientService: ClientService, private route: ActivatedRoute, private location: Location) {
+  }
 
   ngOnInit(): void {
     this.route.params

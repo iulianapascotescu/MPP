@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Client} from "../../clients/shared/client.model";
 import {Rent} from "../shared/rent.model";
 import {ClientService} from "../../clients/shared/client.service";
@@ -16,13 +16,14 @@ export class RentListComponent implements OnInit {
   rents: Array<Rent>;
 
   constructor(private rentService: RentService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getRents();
   }
 
-  getRents(){
+  getRents() {
     this.rentService.getRents()
       .subscribe(
         rents => this.rents = rents,

@@ -3,13 +3,14 @@ import {MovieService} from "./shared/movie.service";
 import {Router} from "@angular/router";
 
 @Component({
-    moduleId: module.id,
-    selector: 'ubb-movies',
-    templateUrl: './movies.component.html',
-    styleUrls: ['./movies.component.css'],
+  moduleId: module.id,
+  selector: 'ubb-movies',
+  templateUrl: './movies.component.html',
+  styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -19,12 +20,12 @@ export class MoviesComponent {
     this.router.navigate(["movie/new"]);
   }
 
-  sortMovies(){
+  sortMovies() {
     console.log("sort movies button clicked");
     this.router.navigate(["movie/sort"]);
   }
 
-  filterMovies(){
+  filterMovies() {
     console.log("filter movies clicked");
     this.router.navigate(["movie/filter"]);
   }

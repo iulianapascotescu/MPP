@@ -38,42 +38,42 @@ export class MovieService {
     return this.httpClient.delete(url);
   }
 
-  sortMovies(): Observable<Movie[]>{
+  sortMovies(): Observable<Movie[]> {
     const url = `${this.moviesURL}/sort`;
     const result = this.httpClient.get<Array<Movie>>(url);
     console.log("movie service server result sortMovies {}", result);
     return result;
   }
 
-  nextSort(): Observable<Movie[]>{
+  nextSort(): Observable<Movie[]> {
     const url = `${this.moviesURL}/nextSort`;
     const result = this.httpClient.get<Array<Movie>>(url);
     console.log("movie service server result nextSort {}", result);
     return result;
   }
 
-  prevSort(): Observable<Movie[]>{
+  prevSort(): Observable<Movie[]> {
     const url = `${this.moviesURL}/prevSort`;
     const result = this.httpClient.get<Array<Movie>>(url);
     console.log("movie service server result prevSort {}", result);
     return result;
   }
 
-  filterMovies(): Observable<Movie[]>{
+  filterMovies(): Observable<Movie[]> {
     const url = `${this.moviesURL}/filter`;
     const result = this.httpClient.get<Array<Movie>>(url);
     console.log("movie service server result filter {}", result);
     return result;
   }
 
-  nextFilterMovies(): Observable<Movie[]>{
+  nextFilterMovies(): Observable<Movie[]> {
     const url = `${this.moviesURL}/nextFilter`;
     const result = this.httpClient.get<Array<Movie>>(url);
     console.log("movie service server result nextFilter {}", result);
     return result;
   }
 
-  prevFilterMovies(): Observable<Movie[]>{
+  prevFilterMovies(): Observable<Movie[]> {
     const url = `${this.moviesURL}/prevFilter`;
     const result = this.httpClient.get<Array<Movie>>(url);
     console.log("movie service server result prevFilter {}", result);

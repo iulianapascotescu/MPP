@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Client} from "../shared/client.model";
 import {ClientService} from "../shared/client.service";
 import {Router} from "@angular/router";
@@ -15,7 +15,8 @@ export class ClientListComponent implements OnInit {
   selectedClient: Client;
 
   constructor(private clientService: ClientService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getClients();
@@ -25,7 +26,7 @@ export class ClientListComponent implements OnInit {
     this.clientService.getClients()
       .subscribe(
         clients => this.clients = clients,
-      error => this.errorMessage = <any>error
+        error => this.errorMessage = <any>error
       );
   }
 
@@ -37,7 +38,7 @@ export class ClientListComponent implements OnInit {
     this.router.navigate(['/client/detail', this.selectedClient.id]);
   }
 
-  deleteClient(): void{
+  deleteClient(): void {
     this.router.navigate(['/client/delete', this.selectedClient.id]);
   }
 }

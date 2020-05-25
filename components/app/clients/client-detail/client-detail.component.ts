@@ -17,7 +17,8 @@ export class ClientDetailComponent implements OnInit {
 
   constructor(private clientService: ClientService,
               private route: ActivatedRoute,
-              private location: Location) { }
+              private location: Location) {
+  }
 
   ngOnInit(): void {
     this.route.params
