@@ -14,9 +14,9 @@ export class RentNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveRent(movieId, clientId){
-    console.log("saving rent", {movieId, clientId});
-    this.rentService.saveRent({movieId: movieId, clientId: clientId}).subscribe(_ => this.location.back());
+  saveRent(movieTitle, clientName){
+    console.log("saving rent", {movieTitle, clientName});
+    this.rentService.saveRent({movieTitle: movieTitle, clientName: clientName}).subscribe(_ => this.location.back());
   }
 
   back(){

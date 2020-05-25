@@ -58,7 +58,11 @@ public class ClientService implements ClientServiceInterface {
     }
 
     @Override
-    public Client findById(@Min(0) int id) {
-        return this.clientRepository.findById(id).get();
+    public Client findByName(String name) {
+        List<Client> clients = this.clientRepository.findAll();
+        for(Client c: clients)
+            if(c.getName().equals(name))
+                return c;
+        return null;
     }
 }

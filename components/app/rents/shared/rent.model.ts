@@ -8,6 +8,6 @@ export class Rent {
 }
 
 export class NewRent {
-  movieId: number;
-  clientId: number;
+  movieTitle: string;
+  clientName: string;
 }

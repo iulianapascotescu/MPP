@@ -48,9 +48,8 @@ public class RentController {
 
     @RequestMapping(value = "/rents", method = RequestMethod.GET)
     public List<RentDto> getRents(){
-        log.trace("RentController getRents - method entered");
+        log.trace("RentController getRents - method enterrrrre");
         List<Rent> rents = rentService.getAllRents();
-        log.trace("RentController line 40");
         List<RentDto> rentsDto = new ArrayList<>();//rentConverter.convertModelsToDtos(this.rentService.getAllRents()));
         for(Rent rent : rents)
             rentsDto.add(rentConverter.convertModelToDto(rent));
@@ -61,8 +60,8 @@ public class RentController {
     @RequestMapping(value = "/rents", method = RequestMethod.POST)
     public RentDto saveRent(@RequestBody @NotNull NewRentDto newRentDto) {
         log.trace("RentsDto saveRent: newRentDto={} - method entered", newRentDto);
-        Movie movie = this.movieService.findById(newRentDto.getMovieId());
-        Client client = this.clientService.findById(newRentDto.getClientId());
+        Movie movie = this.movieService.findByTitle(newRentDto.getMovieTitle());
+        Client client = this.clientService.findByName(newRentDto.getClientName());
         Rent rent = new Rent(movie, client);
         RentDto rentDtoSaved = rentConverter.convertModelToDto(rentService.saveRent(rent));
         log.trace("RentsDto saveRent - method finished");

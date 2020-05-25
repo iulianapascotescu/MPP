@@ -79,8 +79,12 @@ public class MovieService implements MovieServiceInterface {
     }
 
     @Override
-    public Movie findById(@Min(0) int id) {
-        return this.movieRepository.findById(id).get();
+    public Movie findByTitle(String title) {
+        List<Movie> movies = this.movieRepository.findAll();
+        for(Movie m: movies)
+            if(m.getTitle().equals(title))
+                return m;
+        return null;
     }
 
     @Override
