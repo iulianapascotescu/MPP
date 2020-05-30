@@ -25,7 +25,7 @@ public class ClientService implements ClientServiceInterface {
     @Override
     public List<Client> getAllClients() {
         log.trace("getAllClients: method entered");
-        List<Client> clients = clientRepository.findAll();
+        List<Client> clients = clientRepository.findAllWithRentsAndMovies();
         log.trace("getAllClients: result={}", clients);
         return clients;
     }
@@ -43,7 +43,7 @@ public class ClientService implements ClientServiceInterface {
     public Client updateClient(@NotNull @Valid Client client) {
         log.trace("updateClient - method entered: client={}", client);
         Client update = this.clientRepository.findById(client.getId()).orElse(client);
-        this.clientRepository.save(client);
+        this.clientRepository.updateClient(client);
         log.trace("updateClient - method finished");
         return update;
     }

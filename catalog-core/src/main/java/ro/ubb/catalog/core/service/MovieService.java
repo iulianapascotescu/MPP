@@ -36,7 +36,7 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public List<Movie> getAllMovies() {
         log.trace("MovieService getAllMovies: method entered");
-        List<Movie> movies = movieRepository.findAll();
+        List<Movie> movies = movieRepository.findAllWithRentsAndClients();
         log.trace("MovieService getAllMovies: result={}", movies);
         return movies;
     }
@@ -54,7 +54,7 @@ public class MovieService implements MovieServiceInterface {
     public Movie updateMovie(@NotNull @Valid Movie movie) {
         log.trace("updateMovie - method entered: movie={}", movie);
         Movie update = movieRepository.findById(movie.getId()).orElse(movie);
-        this.movieRepository.save(movie);
+        this.movieRepository.updateMovie(movie);
         log.trace("updateMovie - method finished");
         return update;
     }
