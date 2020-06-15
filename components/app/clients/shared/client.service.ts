@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHandler, HttpHeaders} from "@angular/common/http";
 
 import {Client} from "./client.model";
 
@@ -16,7 +16,15 @@ export class ClientService {
   }
 
   getClients(): Observable<Client[]> {
-    return this.httpClient.get<Array<Client>>(this.clientsURL);
+
+
+    let headers = new HttpHeaders({
+      Authorization: "Basic " +
+        btoa(localStorage.getItem("username") + ":" +
+          localStorage.getItem("password")) });
+    headers.append("Content-Type", "application/json");
+    headers.append("Cache-Control", "no-cache");
+    return this.httpClient.get<Array<Client>>(this.clientsURL, {headers});
   }
 
   getClient(id: number): Observable<Client> {

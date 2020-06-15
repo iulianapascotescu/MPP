@@ -44,6 +44,7 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public Movie saveMovie(@NotNull @Valid Movie movie) {
         log.trace("saveMovie - method entered: movie={}", movie);
+        movie.setId(null);
         Movie savedMovie = this.movieRepository.save(movie);
         log.trace("saveMovie - method finished");
         return savedMovie;
@@ -53,7 +54,7 @@ public class MovieService implements MovieServiceInterface {
     @Transactional
     public Movie updateMovie(@NotNull @Valid Movie movie) {
         log.trace("updateMovie - method entered: movie={}", movie);
-        Movie update = movieRepository.findById(movie.getId()).orElse(movie);
+        Movie update = movieRepository.findByTitle(movie.getTitle());
         this.movieRepository.updateMovie(movie);
         log.trace("updateMovie - method finished");
         return update;
@@ -140,6 +141,11 @@ public class MovieService implements MovieServiceInterface {
         int end = Math.min((start + pageForFilter.getPageSize()), result.size());
         Page<Movie> pages = new PageImpl<>(result.subList(start, end), this.pageForFilter, result.size());
         return pages.getContent();
+    }
+
+    @Override
+    public Movie getMovieByTitle(String title) {
+        return this.movieRepository.findByTitle(title);
     }
 
 }

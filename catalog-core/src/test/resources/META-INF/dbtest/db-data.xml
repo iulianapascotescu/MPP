@@ -1,0 +1,8 @@
+<dataset>
+    <client id="1" name="client1" age="11"  />
+    <client id="2" name="client2" age="51"  />
+    <client id="3" name="client3" age="34"  />
+    <movie id="1" title="title1" genre="action" year="1999"/>
+    <movie id="2" title="title2" genre="action" year="1999"/>
+</dataset>
+

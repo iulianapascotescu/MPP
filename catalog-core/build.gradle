@@ -24,4 +24,14 @@ dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.3'
 
+
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: "$hibernateJpa21Version"
+
+
+    //dbunit-test
+    compile group: 'com.zaxxer', name: 'HikariCP', version: "$hikariVersion"
+    compile group: 'org.dbunit', name: 'dbunit', version: "$dbUnitVersion"
+    compile group: 'com.h2database', name: 'h2', version: "$h2DbVersion"
+    compile group: 'com.github.springtestdbunit', name: 'spring-test-dbunit', version: "$springtestdbunitVersion"
+
 }

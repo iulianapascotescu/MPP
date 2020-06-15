@@ -11,21 +11,15 @@ public class ClientConverter extends BaseConverter<Client, ClientDto> {
 
     @Override
     public Client convertDtoToModel(ClientDto dto) {
-        Client client = Client.builder()
-                .name(dto.getName())
-                .age(dto.getAge())
-                .build();
+        Client client = new Client(dto.getName(),dto.getAge(), null);
         client.setId(dto.getId());
         return client;
     }
 
     @Override
     public ClientDto convertModelToDto(Client client) {
-        ClientDto dto = ClientDto.builder()
-                .name(client.getName())
-                .age(client.getAge())
-                .build();
-        dto.setId(client.getId());
-        return dto;
+        ClientDto clientDto=new ClientDto(client.getName(),client.getAge());
+        clientDto.setId(client.getId());
+        return clientDto;
     }
 }

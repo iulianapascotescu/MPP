@@ -23,6 +23,8 @@ import { RentListComponent } from './rents/rent-list/rent-list.component';
 import { RentNewComponent } from './rents/rent-new/rent-new.component';
 import { MovieSortComponent } from './movies/movie-sort/movie-sort.component';
 import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
+import { MainComponent } from './main/main.component';
+import {AppService} from "./shared/service";
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { MovieFilterComponent } from './movies/movie-filter/movie-filter.compone
     RentNewComponent,
     MovieSortComponent,
     MovieFilterComponent,
+    MainComponent,
   ],
 
   imports: [
@@ -52,7 +55,7 @@ import { MovieFilterComponent } from './movies/movie-filter/movie-filter.compone
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [MovieService, ClientService, RentService],
+  providers: [MovieService, ClientService, RentService,AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

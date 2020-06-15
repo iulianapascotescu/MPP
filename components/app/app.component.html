@@ -1,11 +1,20 @@
-<h1>{{title}}</h1>
+<div class="container" *ngIf="!this.service.loggedIn">
+  <form>
+    Username: <input type="text" #username>
+    Password: <input type="password" #password>
+    <button type="button" (click)="login(username.value, password.value)">Login</button>
+  </form>
+</div>
 
-<nav>
-  <a routerLink="/movies" routerLinkActive="active">Movies</a>
-  <a routerLink="/clients" routerLinkActive="active">Clients</a>
-  <a routerLink="/rents" routerLinkActive="active">Rents</a>
-</nav>
+<div *ngIf="this.service.loggedIn">
+  <nav>
+    <a routerLink="/movies" routerLinkActive="active">Movies</a>
+    <a routerLink="/clients" routerLinkActive="active">Clients</a>
+    <a routerLink="/rents" routerLinkActive="active" *ngIf="service.admin">Rents</a>
+  </nav>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+  <button (click)="logout()">Logout</button>
 
+</div>
 

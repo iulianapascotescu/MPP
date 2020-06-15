@@ -19,5 +19,6 @@ public class Initializer implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/api/*");
 
+        container.setInitParameter("spring.profiles.active", "local");
     }
 }

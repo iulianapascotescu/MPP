@@ -12,6 +12,7 @@ import {RentsComponent} from "./rents/rents.component";
 import {RentNewComponent} from "./rents/rent-new/rent-new.component";
 import {MovieSortComponent} from "./movies/movie-sort/movie-sort.component";
 import {MovieFilterComponent} from "./movies/movie-filter/movie-filter.component";
+import {MainComponent} from "./main/main.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,8 @@ const routes: Routes = [
   {path: 'rent/new', component: RentNewComponent},
   {path: 'movie/sort', component: MovieSortComponent},
   {path: 'movie/filter', component: MovieFilterComponent},
+  {path: 'main', component: MainComponent},
+
 ];
 
 @NgModule({

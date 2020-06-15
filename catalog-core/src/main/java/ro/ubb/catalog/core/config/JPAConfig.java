@@ -2,9 +2,13 @@ package ro.ubb.catalog.core.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.postgresql.ds.PGPoolingDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,22 +21,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
-/**
- * Created by radu.
- */
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableJpaRepositories({"ro.ubb.catalog.core.repository"})
 @EnableTransactionManagement
-//@EnableCaching
+@Profile("dev")
 public class JPAConfig {
 
-    @Value("${db.jdbcUrl}")
-    private String jdbcUrl;
+    @Value("${db.serverName}")
+    private String serverName;
 
-    @Value("${db.username}")
-    private String username;
+    @Value("${db.databaseName}")
+    private String databaseName;
+
+    @Value("${db.user}")
+    private String user;
 
     @Value("${db.password}")
     private String password;
@@ -42,15 +46,14 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(jdbcUrl);
-        config.setUsername(username);
-        config.setPassword(password);
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.setDriverClassName("org.postgresql.Driver");
-        HikariDataSource dataSource = new HikariDataSource(config);
+        PGPoolingDataSource dataSource = new PGPoolingDataSource();
+        //            dataSource.setUrl(jdbcURL);
+        dataSource.setServerName(serverName);
+        dataSource.setDatabaseName(databaseName);
+        dataSource.setUser(user);
+        dataSource.setPassword(password);
+        dataSource.setMaxConnections(4);
+
         return dataSource;
     }
 

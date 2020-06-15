@@ -7,6 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
 
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "movieWithRents",
+                attributeNodes = @NamedAttributeNode(value = "rents", subgraph = "rentWithClient"),
+                subgraphs = @NamedSubgraph(name = "rentWithClient", attributeNodes = @NamedAttributeNode(value="client")))
+})
 @Entity
 @Table(name = "movie")
 @NoArgsConstructor
@@ -27,7 +32,7 @@ public class Movie extends BaseEntity<Integer> {
     @Max(2020)
     private int year;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Rent.class, mappedBy = "movie", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Rent.class, mappedBy = "movie", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Rent> rents;
 }

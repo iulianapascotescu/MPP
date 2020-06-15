@@ -9,7 +9,7 @@ import ro.ubb.catalog.core.model.Client;
 import ro.ubb.catalog.core.model.Movie;
 import java.util.List;
 
-public interface ClientRepository extends InterfaceRepository<Client, Integer>,ClientRepositorySQL, ClientRepositoryAPI, ClientRepositoryJPQL{
+public interface ClientRepository extends InterfaceRepository<Client, Integer>, ClientRepositorySQL, ClientRepositoryAPI, ClientRepositoryJPQL{
 
     @Query("select distinct a from Client a")
     @EntityGraph(value = "clientWithRents", type = EntityGraph.EntityGraphType.LOAD)
@@ -20,7 +20,7 @@ public interface ClientRepository extends InterfaceRepository<Client, Integer>,C
     //List<Client> findAllWithRentsAndMovies();
 
     @Query("select distinct a from Client a")
-    @EntityGraph(value = "clients", type = EntityGraph.EntityGraphType.LOAD)
+    //@EntityGraph(value = "clients", type = EntityGraph.EntityGraphType.LOAD)
     List<Client> findAll();
 
     @Query("select distinct a from Client a where a.name=:name")
@@ -28,8 +28,8 @@ public interface ClientRepository extends InterfaceRepository<Client, Integer>,C
     Client findByName(@Param("name") String name);
 
     //@Transactional
-    @Modifying
-    @Query(value = "insert into client(id, name, age) values (:id, :name, :age)", nativeQuery = true)
-    @EntityGraph(value = "clientWithRentsAndMovies", type = EntityGraph.EntityGraphType.LOAD)
-    void insertClient(@Param("id") int id, @Param("name") String name, @Param("age") int age);
+    //@Modifying
+    //@Query(value = "insert into client(id, name, age) values (:id, :name, :age)", nativeQuery = true)
+    //@EntityGraph(value = "clientWithRentsAndMovies", type = EntityGraph.EntityGraphType.LOAD)
+    //void insertClient(@Param("id") int id, @Param("name") String name, @Param("age") int age);
 }

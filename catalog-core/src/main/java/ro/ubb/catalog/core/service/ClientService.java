@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class ClientService implements ClientServiceInterface {
-    public static final Logger log = LoggerFactory.getLogger(MovieService.class);
+    public static final Logger log = LoggerFactory.getLogger(ClientService.class);
 
     @Autowired
     private ClientRepository clientRepository;
@@ -42,7 +42,7 @@ public class ClientService implements ClientServiceInterface {
     @Transactional
     public Client updateClient(@NotNull @Valid Client client) {
         log.trace("updateClient - method entered: client={}", client);
-        Client update = this.clientRepository.findById(client.getId()).orElse(client);
+        Client update = this.clientRepository.findByName(client.getName());
         this.clientRepository.updateClient(client);
         log.trace("updateClient - method finished");
         return update;

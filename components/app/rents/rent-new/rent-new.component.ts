@@ -15,8 +15,11 @@ export class RentNewComponent implements OnInit {
   }
 
   saveRent(movieTitle, clientName){
+    console.log(localStorage);
+    if(localStorage.getItem("role")=="ADMIN"){
     console.log("saving rent", {movieTitle, clientName});
     this.rentService.saveRent({movieTitle: movieTitle, clientName: clientName}).subscribe(_ => this.location.back());
+    }
   }
 
   back(){

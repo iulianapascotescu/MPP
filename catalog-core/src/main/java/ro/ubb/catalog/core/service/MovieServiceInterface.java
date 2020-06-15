@@ -26,4 +26,6 @@ public interface MovieServiceInterface {
     List<Movie> nextFilterMovies();
 
     List<Movie> prevFilterMovies();
+
+    Movie getMovieByTitle(String title);
 }
